@@ -1,0 +1,21 @@
+Qulix\RecyclingBundle\Entity\Population:
+    type: entity
+    table: population
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        sort:
+            type: string
+            length: 255
+            nullable: false
+            options:
+                comment: Вид населения
+
+    manyToMany:
+        crude:
+            targetEntity: Crude
+            mappedBy: population

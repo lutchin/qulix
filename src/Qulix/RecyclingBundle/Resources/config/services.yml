@@ -1,0 +1,4 @@
+services:
+#    qulix_recycling.example:
+#        class: Qulix\RecyclingBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

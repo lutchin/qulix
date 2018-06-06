@@ -1,0 +1,113 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
+
+    <title>{% block title %}ППВ{% endblock %} - Пункт Приема Вторсырья</title>
+    {% block stylesheets %}
+        <!-- Bootstrap core CSS -->
+        <link href="{{ asset('css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+    {% endblock %}
+
+</head>
+
+<body data-ng-app="myApp">
+
+
+
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Сделаем мир чище!</h1>
+            <p>«Чистота — залог здоровья» и «Порядок — прежде всего».</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row" data-ng-controller = "CrudeController">
+            <div class="col-md-8">
+                {% block body %}{% endblock %}
+
+            </div>
+
+            <div class="col-md-4">
+                {% block sidebar %}{% endblock %}
+
+            </div>
+        </div>
+
+        <hr>
+
+    </div> <!-- /container -->
+
+
+
+<footer class="container">
+    {% block footer %}
+        <p>&copy; Павел Лученок 2018</p>
+    {% endblock %}
+</footer>
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+
+        let population = document.getElementById('Crude_population_0');
+        population.setAttribute('data-ng-model', 'value.population');
+        population.setAttribute('value', '{{'{{type.population}}'}}');
+        let crude = document.getElementById('Crude_name_0');
+        crude.setAttribute('data-ng-model', 'value.crude');
+        crude.setAttribute('value', '{{'{{type.crude}}'}}');
+
+        angular.module("myApp", [])
+
+            .controller('CrudeController',
+                function CrudeController($scope, $http){
+
+                    $http({method: 'GET', url: '/population'}).
+                    then(function success(response) {
+                        $scope.population=response.data;
+                    });
+                    $http({method: 'GET', url: '/show'}).then(function success(response) {
+                        $scope.status=response.data;
+                    });
+
+                    $scope.myFunc = function(type)
+                    {
+                        $http({method: 'GET', url: '/crude/'+type.population}).then(function success(response) {
+                            $scope.crude = response.data;
+                        });
+
+                    };
+
+                    $scope.value = {
+                    };
+                    $scope.save = function(value)
+                    {
+                        $http({method: 'GET', url: '/add/'+value.population+'/'+value.crude}).then(function success(response) {
+                            $scope.answer = response.data;
+                        });
+                    };
+
+                    $scope.clear = function(){
+                        $http({method: 'GET', url: '/clear'}).then(function success(response) {
+                            $scope.answer = response.data;
+                        });
+                    }
+
+                }
+            );
+
+
+    </script>
+{% endblock %}
+
+</body>
+</html>

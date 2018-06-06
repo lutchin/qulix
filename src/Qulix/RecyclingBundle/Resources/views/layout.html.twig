@@ -1,0 +1,9 @@
+{% extends '//base.html.twig' %}
+
+{% block sidebar %}
+
+        <h2>Рейтинг счастья работника ППВ:</h2><p style="font-size: 28px">{{ '{{ answer ? answer.status : status.status }}' }}</p><br>
+
+         <button type="reset" data-ng-click="clear(status)" class="btn btn-secondary" >Новый день</button>
+
+{% endblock %}

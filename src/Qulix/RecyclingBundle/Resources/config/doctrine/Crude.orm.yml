@@ -1,0 +1,28 @@
+Qulix\RecyclingBundle\Entity\Crude:
+    type: entity
+    table: crude
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+            nullable: false
+            options:
+                comment: Название сырья
+
+    manyToMany:
+        population:
+             targetEntity: Population
+             joinTable:
+                 name: crude_has_population
+                 joinColumns:
+                    crude_id:
+                       referencedColumnName: id
+                 inverseJoinColumns:
+                    population_id:
+                       referencedColumnName: id

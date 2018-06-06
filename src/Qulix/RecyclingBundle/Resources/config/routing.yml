@@ -1,0 +1,38 @@
+QulixRecycling_homepage:
+    path:     /
+    defaults: { _controller: "QulixRecyclingBundle:Page:index" }
+    requirements:
+         methods:  GET
+
+
+QulixRecycling_crude:
+    path:     /crude/{type}
+    defaults: { _controller: "QulixRecyclingBundle:Page:crude" }
+    requirements:
+         methods:  GET
+
+
+QulixRecycling_population:
+    path:     /population
+    defaults: { _controller: "QulixRecyclingBundle:Page:population" }
+    requirements:
+         methods:  GET
+
+
+QulixRecycling_add:
+    path:     /add/{population}/{crude}
+    defaults: { _controller: "QulixRecyclingBundle:Page:add" }
+    requirements:
+         methods:  GET|POST
+
+QulixRecycling_show:
+    path:     /show
+    defaults: { _controller: "QulixRecyclingBundle:Page:show" }
+    requirements:
+         methods:  GET
+
+QulixRecycling_clear:
+    path:     /clear
+    defaults: { _controller: "QulixRecyclingBundle:Page:clear" }
+    requirements:
+         methods:  GET

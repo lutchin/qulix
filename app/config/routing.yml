@@ -1,0 +1,5 @@
+qulix_recyclable:
+    resource: "@QulixRecyclingBundle/Resources/config/routing.yml"
+    prefix:   /
+
+

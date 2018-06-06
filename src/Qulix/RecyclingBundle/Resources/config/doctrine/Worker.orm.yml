@@ -1,0 +1,17 @@
+Qulix\RecyclingBundle\Entity\Worker:
+    type: entity
+    table: worker
+    id:
+        name:
+            type: string
+            length: 25
+            nullable: true
+            options:
+                comment: Имя работника
+    fields:
+        status:
+            type: decimal
+            length: 2,0
+            nullable: true
+            options:
+                comment: Количество радиации
